@@ -1,8 +1,9 @@
-import { Router } from "express";
-import { taskRouter } from "@controllers/task.routes";
+import { Router } from 'express'
 
-const routes = Router();
+import { taskRouter } from '@controllers/task.routes'
 
-routes.use("/", taskRouter);
+const routes = Router()
 
-export { routes };
+routes.use('/', taskRouter)
+
+export { routes }

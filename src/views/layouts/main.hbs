@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  <style>
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Lista de Tarefas</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="taskInput" placeholder="Add a new task...">
+          <button class="btn btn-primary" id="addTaskButton">Adicionar</button>
+        </div>
+        <ul class="list-group" id="taskList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('addTaskButton').addEventListener('click', function () {
+      const taskInput = document.getElementById('taskInput');
+      const taskText = taskInput.value.trim();
+      if (taskText !== "") {
+        const taskList = document.getElementById('taskList');
+
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+        const taskSpan = document.createElement('span');
+        taskSpan.textContent = taskText;
+
+        const buttonGroup = document.createElement('div');
+        buttonGroup.className = 'btn-group';
+
+        // Botão de Concluído
+        const completeButton = document.createElement('button');
+        completeButton.className = 'btn btn-success btn-sm';
+        completeButton.textContent = 'Concluído';
+        completeButton.addEventListener('click', function () {
+          taskSpan.classList.toggle('completed');
+          if (taskSpan.classList.contains('completed')) {
+            completeButton.textContent = 'Desfazer';
+          } else {
+            completeButton.textContent = 'Concluído';
+          }
+        });
+
+        // Botão de Deletar
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'btn btn-danger btn-sm';
+        deleteButton.textContent = 'Deletar';
+        deleteButton.addEventListener('click', function () {
+          taskList.removeChild(listItem);
+        });
+
+        buttonGroup.appendChild(completeButton);
+        buttonGroup.appendChild(deleteButton);
+
+        listItem.appendChild(taskSpan);
+        listItem.appendChild(buttonGroup);
+
+        taskList.appendChild(listItem);
+        taskInput.value = '';
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
