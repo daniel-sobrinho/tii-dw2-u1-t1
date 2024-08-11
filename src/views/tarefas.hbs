@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <h1 class="text-center">Lista de Tarefas</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+  <form action="/" method="post">
+        <div class="input-group mb-3">
+          <input name="task" type="text" class="form-control" id="taskInput" placeholder="Adicionar Tarefa">
+          <button class="btn btn-primary" type="submit">
+            <i class="bi bi-plus-circle-fill"></i>
+          </button>
+  </form>
+        </div>
+        <ul class="list-group"
+          {{> task}}
+        </ul>
+      </div>
+    </div>
+</div>
